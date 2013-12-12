@@ -4,7 +4,7 @@
         transferClass: '',
         animation: {},
         duration: 500,
-        beforeTransfer: function() {},
+        beforeStart: function() {},
         completed: function() {}
     };
     $.fn.transfer = function(opts) {
@@ -23,19 +23,19 @@
             $.extend(animation, settings.animation);
 
             var _this = $(_this);
-            var mePosition = _this.offset();
+            var thisPosition = _this.offset();
             var transfer = $('<div class="effect-transfer"></div>')
                 .appendTo(document.body)
                 .addClass(settings.transferClass)
                 .css({
-                    top: hoverRowPosition.top,
-                    left: hoverRowPosition.left,
-                    height: hoverRow.innerHeight(),
-                    width: hoverRow.innerWidth(),
+                    top: thisPosition.top,
+                    left: thisPosition.left,
+                    height: _this.innerHeight(),
+                    width: _this.innerWidth(),
                     position: 'absolute'
                 });
 
-            settings.beforeTransfer();
+            settings.beforeStart();
             transfer.animate(settings.animation, settings.duration, function() {
                 transfer.remove();
                 settings.completed();
