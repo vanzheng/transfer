@@ -1,6 +1,6 @@
 (function($) {
     var defaults = {
-        target: null,
+        target: '',
         transferClass: '',
         animation: {},
         duration: 500,
@@ -19,10 +19,7 @@
                 height: target.innerHeight(),
                 width: target.innerWidth()
             };
-
-            $.extend(animation, settings.animation);
-
-            var _this = $(_this);
+            var _this = $(this);
             var thisPosition = _this.offset();
             var transfer = $('<div class="effect-transfer"></div>')
                 .appendTo(document.body)
@@ -35,6 +32,7 @@
                     position: 'absolute'
                 });
 
+            $.extend(animation, settings.animation);
             settings.beforeStart();
             transfer.animate(settings.animation, settings.duration, function() {
                 transfer.remove();
